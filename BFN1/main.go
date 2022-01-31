@@ -86,9 +86,7 @@ func palindrome2(i int) bool {
 	for j := 0; j < l/2; j++ {
 		x1 := i % int(math.Pow(10.0, float64(j+1)))
 		x2 := z % int(math.Pow(10.0, float64(j+1)))
-		if x1 == x2 {
-			continue
-		} else {
+		if x1 != x2 {
 			return false
 		}
 	}
