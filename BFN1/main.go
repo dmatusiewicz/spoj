@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 func main() {
@@ -16,10 +17,11 @@ func main() {
 		fmt.Scanf("%d", &v)
 		tests = append(tests, v)
 	}
+	xx := time.Now()
 
 	for _, j := range tests {
 		for {
-			if palindrome(j) {
+			if palindrome2(j) {
 				fmt.Printf("%d %d\n", j, tries)
 				tries = 0
 				break
@@ -29,6 +31,8 @@ func main() {
 			}
 		}
 	}
+	fmt.Println(xx)
+	fmt.Println(time.Now())
 }
 
 func revertNum(i int) int {
@@ -72,4 +76,22 @@ func palindrome(i int) bool {
 		}
 	}
 	return true
+}
+
+// More elegant palindrome
+func palindrome2(i int) bool {
+	z := revertNum(i)
+	l := countDigits(i)
+
+	for j := 0; j < l/2; j++ {
+		x1 := i % int(math.Pow(10.0, float64(j+1)))
+		x2 := z % int(math.Pow(10.0, float64(j+1)))
+		if x1 == x2 {
+			continue
+		} else {
+			return false
+		}
+	}
+	return true
+
 }
